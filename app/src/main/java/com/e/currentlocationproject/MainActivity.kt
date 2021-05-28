@@ -2,6 +2,7 @@ package com.e.currentlocationproject
 
 import android.content.Context
 import android.content.pm.PackageManager
+import android.location.Address
 import android.location.Geocoder
 import android.location.Location
 import android.location.LocationManager
@@ -124,9 +125,10 @@ class MainActivity : AppCompatActivity() {
         var cityName:String = ""
         var countryName = ""
         var geoCoder = Geocoder(this, Locale.getDefault())
-        var Adress = geoCoder.getFromLocation(lat,long,3)
-
-        cityName = Adress.get(0).subLocality + "" + Adress.get(0).locality + "" + Adress.get(0).countryName
+        var Adress = geoCoder.getFromLocation(lat,long,1)
+   var fullAddress = Adress.get(0).getAddressLine(0)
+        cityName = fullAddress
+       // cityName = Adress.get(0).subLocality + "" + Adress.get(0).locality + "" + Adress.get(0).countryName
         countryName = Adress.get(0).countryName
         Log.d("Debug:","Your City: " + cityName + " ; your Country " + countryName)
         return cityName
